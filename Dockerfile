@@ -1,15 +1,11 @@
-FROM python:3.9-alpine
+# syntax=docker/dockerfile:1
 
-WORKDIR /flask_app
+FROM python:3.10.12-slim-bullseye
+WORKDIR /python-docker
 
-COPY requirements.txt .
+COPY requirements.txt requirements.txt
+RUN pip3 install -r requirements.txt
 
-RUN pip install --no-cache-dir -r requirements.txt
+COPY . .
 
-RUN pip install pytest
-
-COPY app/ .
-
-COPY tests/ app/tests/
-
-CMD [ "python", "app.py" ]
+CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
