@@ -15,14 +15,7 @@ pipeline {
     }
     
     // Retreive code from Github 
-    stages {
-        stage('Cloning Git') {
-            steps {
-                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'github_user', url: 'https://github.com/clinton-pillay7/flask-docker']])       
-            }
-        }
-    
-    // Building Docker images
+   
     stage('Building image') {
       steps{
         script {
